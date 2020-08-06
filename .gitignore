@@ -1,4 +1,3 @@
-.json
+*.json
 sent/
-Keys.json
-loyal-order-261021-5180b181c57b.json
+__pycache__

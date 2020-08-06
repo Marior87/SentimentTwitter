@@ -12,8 +12,6 @@ from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
 
-# En nuestro environment, debimos crear la variable de entorno:
-# export GOOGLE_APPLICATION_CREDENTIALS=loyal-order-261021-5180b181c57b.json
 
 # Accedemos a las claves de acceso a nuestra App de Twitter:
 with open('Keys.json') as f:
@@ -43,6 +41,7 @@ def authentication(cons_key, cons_secret, acc_token, acc_secret):
     auth = tweepy.OAuthHandler(cons_key, cons_secret)
     auth.set_access_token(acc_token, acc_secret)
     api = tweepy.API(auth)
+
     return api
 
 
@@ -61,7 +60,6 @@ def search_tweets(keyword, total_tweets):
 
     today_datetime = datetime.today().now()
     yesterday_datetime = today_datetime - timedelta(days=1)
-    # today_date = today_datetime.strftime('%Y-%m-%d')
     yesterday_date = yesterday_datetime.strftime('%Y-%m-%d')
     api = authentication(CONS_KEY, CONS_SECRET, ACC_TOKEN, ACC_SECRET)
     search_result = tweepy.Cursor(api.search,
@@ -69,6 +67,7 @@ def search_tweets(keyword, total_tweets):
                                   since=yesterday_date,
                                   result_type='recent',
                                   lang='es').items(total_tweets)
+
     return search_result
 
 
@@ -94,7 +93,7 @@ def clean_tweets(tweet):
     tok = WordPunctTokenizer()
     words = tok.tokenize(lower_case_tweet)
     clean_tweet = (' '.join(words)).strip()
-    print(clean_tweet)
+
     return clean_tweet
 
 
@@ -116,13 +115,14 @@ def get_sentiment_score(tweet):
         mayor detalle consultar:
             https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values
     """
+
     client = language.LanguageServiceClient()
     document = types\
-               .Document(content=tweet, type=enums.Document.Type.PLAIN_TEXT)
+        .Document(content=tweet, type=enums.Document.Type.PLAIN_TEXT)
     sentiment_score = client\
-                      .analyze_sentiment(document=document)\
-                      .document_sentiment\
-                      .score
+        .analyze_sentiment(document=document)\
+        .document_sentiment\
+        .score
     return sentiment_score
 
 
@@ -145,17 +145,16 @@ def analyze_tweets(keyword, total_tweets):
         cleaned_tweet = clean_tweets(tweet.text.encode('utf-8'))
         sentiment_score = get_sentiment_score(cleaned_tweet)
         score += sentiment_score
-        # print('Tweet: {}'.format(cleaned_tweet))
-        # print('Score: {}\n'.format(sentiment_score))
         no_link_tweet = re.sub('https?://[A-Za-z0-9./]+', '', tweet.text)
         lista_tweets.append((no_link_tweet, sentiment_score))
     final_score = round((score / float(total_tweets)), 2)
+
     return final_score, lista_tweets
 
 
-#Casos Ejemplo:
+# Casos Ejemplo:
 
-#1.- Probando comentarios específicos:
+# 1.- Probando comentarios específicos:
 """ bad_comment = get_sentiment_score('¡Esta lavadora no sirve para nada!')
 good_comment = get_sentiment_score('Esta lavadora es buenisima')
 neutral_comment = get_sentiment_score('Lavadora mas o menos')
@@ -163,11 +162,3 @@ neutral_comment = get_sentiment_score('Lavadora mas o menos')
 print('bad_comment_score:', bad_comment)
 print('good_comment_score:', good_comment)
 print('neutral_comment_score:', neutral_comment) """
-
-
-#2.- Buscando tweets:
-final_score, lista_tweets = analyze_tweets('Boca Juniors', 1)
-print("Puntaje Final: ", final_score)
-
-for tweet in lista_tweets:
-    print(tweet)
