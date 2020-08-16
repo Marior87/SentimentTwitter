@@ -20,7 +20,7 @@ Al momento de escribir este tutorial, es posible crear una cuenta en GCP a parti
 
 Incluso es posible que quieras crearte una cuenta Gmail nueva para hacer este proyecto, esto también lo puedes hacer de forma gratuita ingresando a [Gmail](https://google.com/gmail).
 
-Una vez creada la cuenta, ingresamos a la [consola de GCP](console.cloud.google.com). Si es la primera vez que la utilizamos, nos va a pedir una serie de datos, incluídos datos sobre una Tarjeta de Crédito. **Puesto que los Términos de Servicio pueden cambiar en cualquier momento, recomiendo leerlos atentamente**. Actualmente indican que solo requieren esa información para verificar la cuenta y para que exista un medio de cobro en caso de que se incurran en gastos.
+Una vez creada la cuenta, ingresamos a la [consola de GCP](https://console.cloud.google.com). Si es la primera vez que la utilizamos, nos va a pedir una serie de datos, incluídos datos sobre una Tarjeta de Crédito. **Puesto que los Términos de Servicio pueden cambiar en cualquier momento, recomiendo leerlos atentamente**. Actualmente indican que solo requieren esa información para verificar la cuenta y para que exista un medio de cobro en caso de que se incurran en gastos.
 
 #### Creación del Proyecto en GCP
 

@@ -87,11 +87,20 @@ def clean_tweets(tweet):
         clean_tweet: Tweet ya limpio para proceder a realizar análisis de sentimiento.
     """
 
+    # Removemos el usuario en el tweet
     user_removed = re.sub(r'@[A-Za-z0-9]+', '', tweet.decode('utf-8'))
+
+    # Removemos cualquier link presente en el tweet
     link_removed = re.sub('https?://[A-Za-z0-9./]+', '', user_removed)
+
+    # llevamos todo a minúsculas
     lower_case_tweet = link_removed.lower()
+
+    # Instanciamos un tokenizador y, de aucerdo a sus reglas, creamos la lista de tokens
     tok = WordPunctTokenizer()
     words = tok.tokenize(lower_case_tweet)
+
+    # Unimos los tokens para crear un único string a ser enviado
     clean_tweet = (' '.join(words)).strip()
 
     return clean_tweet
@@ -123,6 +132,7 @@ def get_sentiment_score(tweet):
         .analyze_sentiment(document=document)\
         .document_sentiment\
         .score
+
     return sentiment_score
 
 

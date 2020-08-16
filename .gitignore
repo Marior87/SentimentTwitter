@@ -1,3 +1,4 @@
 *.json
 sent/
 __pycache__
+.vscode
