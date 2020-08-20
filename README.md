@@ -26,7 +26,15 @@ Una vez creada la cuenta, ingresamos a la [consola de GCP](https://console.cloud
 
 Una vez dentro de la consola, se nos mostrará el dashboard donde aparecerá un resumen de los servicios que tenemos activos, si es la primera vez que la usas seguramente no tendrá mucha información.
 
+<p align="center">
+<img src="resources/GCP_Dashboard.png" width=600px height=350px/>
+</p>
+
 Un proyecto en GCP no es más que una forma de manejar los servicios que queramos incorporar de manera centralizada. Los proyectos permiten controlar gastos y autorizaciones de acceso a servicios que se configuren dentro de GCP. Para poder utilizar cualquier servicio es necesario crear un proyecto.
+
+<p align="center">
+<img src="resources/create_project.png" width=600px height=350px/>
+</p>
 
 Si durante la bienvenida no nos indicó que debemos crear un proyecto, podemos utilizar el siguiente [link](https://console.cloud.google.com/projectcreate).
 
@@ -34,9 +42,41 @@ Si durante la bienvenida no nos indicó que debemos crear un proyecto, podemos u
 
 Para utilizar la API de Cloud Natural Language en nuestra aplicación, debemos activar dicha API dentro del proyecto y obtener una llave de acceso en formato JSON, en las siguientes imágenes se detalla dicho procedimiento:
 
+<p align="center">
+<img src="resources/access_GCP_APIs.png" width=600px height=350px/>
+</p>
+
+<p align="center">
+<img src="resources/enable_APIs.png" width=600px height=350px/>
+</p>
+
 Al activar la API, pide la vinculación con la cuenta de facturación.
 
-Le podemos dar un nombre cualquiera a la cuenta de servicio.
+<p align="center">
+<img src="resources/activate_NLP_API.png" width=600px height=350px/>
+</p>
+
+Ahora, obtenemos las credenciales en formato json que nos permitirá conectarnos al servicio NLP de nuestro proyecto:
+
+<p align="center">
+<img src="resources/create_credentials.png" width=600px height=350px/>
+</p>
+
+Necesitamos ahora crear una cuenta de servicio,la cual puede llevar cualquier nombre:
+
+<p align="center">
+<img src="resources/service_account_name.png" width=600px height=350px/>
+</p>
+
+Continuamos configurándola como se indica y obtenemos el archivo json:
+
+<p align="center">
+<img src="resources/service_account_permissions.png" width=600px height=350px/>
+</p>
+
+<p align="center">
+<img src="resources/create_json_key.png" width=600px height=350px/>
+</p>
 
 ### Cuenta en Twitter Developers
 
@@ -45,6 +85,10 @@ Puesto que el interés de la aplicación no es solo el análisis de sentimiento,
 Este paso es quizás el que tome más tiempo, ya que acceder a la API de Twitter requiere crear dentro de la cuenta de Twitter Developers una App, y para ello debemos llenar un registro en donde exponemos el uso que le daremos a dicha aplicación.
 
 Una vez autorizada la creación de la App, podemos navegar hasta el [detalle de la misma](https://developer.twitter.com/en/apps). Ahí buscamos en la pestaña Keys and Tokens, en caso de ser necesario hacer click en el botón “Create” en “Access token & access token secret”.
+
+<p align="center">
+<img src="resources/twitter_app.png" width=600px height=350px/>
+</p>
 
 Crear un archivo json con la siguiente estructura:
 
@@ -89,7 +133,7 @@ pip3 install -r requirements.txt
 
 ### Configurar variable de entorno de Google
 
-En la línea de comandos:
+Ejecutar en la línea de comandos:
 
 ```
 export GOOGLE_APPLICATION_CREDENTIALS=<path-to-gcp-credential-file.json>
