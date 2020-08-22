@@ -73,8 +73,8 @@ def search_tweets(keyword, total_tweets):
 
 def clean_tweets(tweet):
     """
-    Función para limpiar los tweets de elementos innecesarios al momento de realizar
-    análisis de sentimiento.
+    Función para limpiar los tweets antes de ser enviados a la API de análisis de
+    sentimiento.
 
     Nota:   La API de Google es bastante flexible a la hora de realizar análisis de
             sentimiento. No estoy seguro de que todas estas "limpiezas" sean del todo

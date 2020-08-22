@@ -25,7 +25,7 @@ def main():
 
     # Realizamos el análisis:
     final_score, lista_tweets = analisis.analyze_tweets(
-        args.query, total_tweets=3)
+        args.query, total_tweets=10)
 
     for tweet in lista_tweets:
         print(tweet)
